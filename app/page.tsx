@@ -58,7 +58,7 @@ export default function Home() {
         {[...Array(5)].map((e, i) => {
           return (
             <div
-              className="bg-gray-900 border border-solid border-gray-800 hover:border-gray-700 transition delay-75 h-48  rounded-lg p-3 flex flex-col gap-1 cursor-pointer"
+              className="bg-gray-900 border border-solid border-gray-800 hover:border-gray-700 transition delay-75 h-60 sm:h-48  rounded-lg p-3 flex flex-col gap-1 cursor-pointer"
               key={i}
             >
               <div className="flex flex-row w-fit justify-center items-center gap-2 text-green-500 rounded-full font-bold text-xl py-1">
