@@ -4,14 +4,15 @@ import Brand from "@/public/brand.svg";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import {SiEthereum} from "react-icons/si"
+import Link from "next/link";
 const inter = Inter({
   weight: "600",
   subsets: ["latin"],
 });
 export default function Navbar() {
   return (
-    <div className="h-14 p-2 flex flex-row items-center">
-      <div className="flex flex-row items-center gap-2">
+    <div className="h-16 p-3 flex flex-row items-center border-solid border-b-[1px] border-gray-800 bg-gray-950">
+      <Link href="/" className="flex flex-row items-center gap-2">
         <Image
           className="h-8 w-8"
           height={128}
@@ -20,15 +21,15 @@ export default function Navbar() {
           src={Brand}
         />
         <span className={`text-xl ${inter.className}`}>BountyLabs</span>
-      </div>
+      </Link>
 
       <div className="grow" />
-      <div className="flex flex-row items-center gap-2">
-        <Button className="flex flex-row gap-1"><SiEthereum size={16}/> <span className={inter.className}>Submit bounty</span></Button>
+      <div className="flex flex-row items-center gap-4">
+        <Button className="flex flex-row gap-1"><SiEthereum size={16}/> <span className={`hidden sm:block ${inter.className}`}>Create bounty</span></Button>
         <div className="bg-gradient-to-br from-purple-500 via-cyan-400 to-blue-600 rounded-full aspect-square flex justify-center items-center p-[0.2rem]">
           <Avatar className="w-8 h-8">
             <AvatarImage src="https://github.com/zubairmh.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>ZM</AvatarFallback>
           </Avatar>
         </div>
       </div>
