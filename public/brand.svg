@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg5"
+   xml:space="preserve"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false" /><defs
+     id="defs2" /><g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"><path
+       sodipodi:type="spiral"
+       style="fill:#008000;fill-rule:evenodd;stroke:#000000"
+       id="path1652"
+       sodipodi:cx="100.4164"
+       sodipodi:cy="207.87492"
+       sodipodi:expansion="1"
+       sodipodi:revolution="2.908138"
+       sodipodi:radius="229.04422"
+       sodipodi:argument="-16.376732"
+       sodipodi:t0="0"
+       d="m 100.4164,207.87492 c -9.294728,7.34518 -14.486839,-8.90525 -12.208164,-15.44844 6.175069,-17.73164 29.836574,-17.92621 43.105054,-8.96788 23.73419,16.02435 22.71925,50.29625 5.72759,70.76166 -24.93594,30.03381 -71.046829,27.69132 -98.418259,2.48731 C 2.1408092,223.11459 5.8807316,164.80514 39.375591,130.6327 81.525454,87.630183 152.1841,92.799192 193.10706,134.62596 242.67025,185.28377 236.05605,268.36907 185.87353,316.01403 126.73515,372.16197 31.178018,364.09349 -23.171155,305.54021 -85.919427,237.93813 -76.391086,129.88043 -9.4570531,68.838927 66.597649,-0.52031384 187.17533,10.471536 254.90084,85.793312 330.87862,170.29296 318.42076,303.40438 234.70617,377.80781 178.71164,427.57434 99.286631,444.87227 27.314864,424.9404"
+       transform="matrix(1.2445399,0,0,1.2334972,106.66918,-24.986466)" /></g></svg>
