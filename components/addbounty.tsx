@@ -50,7 +50,7 @@ const formSchema = z.object({
     .max(5000, { message: "Description should be a maximum 5000 characters" }),
   bounty: z
     .coerce
-    .number()
+    .number({invalid_type_error:"Enter a valid number"})
     .min(0, { message: "Enter a valid bounty" })
     .max(10, { message: "Max bounties cannot be over 10ETH" }),
   date: z.date().min(new Date(), {
@@ -109,7 +109,7 @@ export default function AddBounty() {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="Pedro Duarte"
+                        placeholder="Develop a ..."
                         className="col-span-3"
                       />
                     </FormControl>
