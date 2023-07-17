@@ -19,12 +19,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Calendar } from "@/components/ui/calendar"
+import { toast } from "react-toastify";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { SiEthereum } from "react-icons/si";
 import { Input } from "@/components/ui/input";
@@ -33,11 +34,13 @@ import { Inter } from "next/font/google";
 import { DatePicker } from "./datepicker";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import * as z from "zod";
+import axios from "axios";
+import { DialogClose } from "@radix-ui/react-dialog";
 
 const formSchema = z.object({
   title: z
@@ -48,9 +51,8 @@ const formSchema = z.object({
     .string()
     .min(20, { message: "Description should be a minimum 20 characters" })
     .max(5000, { message: "Description should be a maximum 5000 characters" }),
-  bounty: z
-    .coerce
-    .number({invalid_type_error:"Enter a valid number"})
+  bounty: z.coerce
+    .number({ invalid_type_error: "Enter a valid number" })
     .min(0, { message: "Enter a valid bounty" })
     .max(10, { message: "Max bounties cannot be over 10ETH" }),
   date: z.date().min(new Date(), {
@@ -71,6 +73,12 @@ export default function AddBounty() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    let req = axios.post("/api/createpost", values);
+    toast.promise(req, {
+      pending: "Creating Bounty",
+      success: "Bounty Created 👌",
+      error: "Bounty Creation Failed 🤯",
+    });
   }
 
   return (
@@ -102,19 +110,19 @@ export default function AddBounty() {
                 name="title"
                 render={({ field }) => (
                   <>
-                  <FormItem className="flex flex-row items-center gap-4">
-                    <FormLabel htmlFor="title" className="text-right">
-                      Title
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="Develop a ..."
-                        className="col-span-3"
-                      />
-                    </FormControl>
-                  </FormItem>
-                  <FormMessage />
+                    <FormItem className="flex flex-row items-center gap-4">
+                      <FormLabel htmlFor="title" className="text-right">
+                        Title
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="Develop a ..."
+                          className="col-span-3"
+                        />
+                      </FormControl>
+                    </FormItem>
+                    <FormMessage />
                   </>
                 )}
               />
@@ -125,19 +133,19 @@ export default function AddBounty() {
                 name="description"
                 render={({ field }) => (
                   <>
-                  <FormItem className="flex flex-row items-center gap-4">
-                    <FormLabel htmlFor="description" className="text-right">
-                      Description
-                    </FormLabel>
-                    <FormControl>
-                      <Textarea
-                        {...field}
-                        placeholder="Example: Looking for an experiences Tensorflow Developer"
-                        className="col-span-3"
-                      />
-                    </FormControl>
-                  </FormItem>
-                  <FormMessage />
+                    <FormItem className="flex flex-row items-center gap-4">
+                      <FormLabel htmlFor="description" className="text-right">
+                        Description
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          {...field}
+                          placeholder="Example: Looking for an experiences Tensorflow Developer"
+                          className="col-span-3"
+                        />
+                      </FormControl>
+                    </FormItem>
+                    <FormMessage />
                   </>
                 )}
               />
@@ -148,39 +156,43 @@ export default function AddBounty() {
                 name="date"
                 render={({ field }) => (
                   <>
-                  <FormItem className="flex flex-row items-center gap-4">
-                    <FormLabel htmlFor="description" className="text-right">
-                      Deadline
-                    </FormLabel>
-                    <FormControl>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant={"outline"}
-                          className={cn(
-                            "w-[280px] justify-start text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                        >
-                          <CalendarIcon className="text-slate-400 mr-2 h-4 w-4" />
-                          <span className="text-slate-400">{field.value ? format(field.value, "PPP") : <>Pick a date</>}</span>
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0">
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) =>
-                          date < new Date()
-                        }
-                        initialFocus
-                      />
-                      </PopoverContent>
-                    </Popover>
-                    </FormControl>
-                  </FormItem>
-                  <FormMessage />
+                    <FormItem className="flex flex-row items-center gap-4">
+                      <FormLabel htmlFor="description" className="text-right">
+                        Deadline
+                      </FormLabel>
+                      <FormControl>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-[280px] justify-start text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              <CalendarIcon className="text-slate-400 mr-2 h-4 w-4" />
+                              <span className="text-slate-400">
+                                {field.value ? (
+                                  format(field.value, "PPP")
+                                ) : (
+                                  <>Pick a date</>
+                                )}
+                              </span>
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-auto p-0">
+                            <Calendar
+                              mode="single"
+                              selected={field.value}
+                              onSelect={field.onChange}
+                              disabled={(date) => date < new Date()}
+                              initialFocus
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      </FormControl>
+                    </FormItem>
+                    <FormMessage />
                   </>
                 )}
               />
@@ -191,25 +203,26 @@ export default function AddBounty() {
                 name="bounty"
                 render={({ field }) => (
                   <>
-                  <FormItem className="flex flex-row items-center gap-4">
-                    <FormLabel htmlFor="bounty" className="text-right">
-                      Bounty
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="0 ETH"
-                        className="col-span-3"
-                      />
-                    </FormControl>
-                  </FormItem>
-                  <FormMessage />
+                    <FormItem className="flex flex-row items-center gap-4">
+                      <FormLabel htmlFor="bounty" className="text-right">
+                        Bounty
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="0 ETH"
+                          className="col-span-3"
+                        />
+                      </FormControl>
+                    </FormItem>
+                    <FormMessage />
                   </>
                 )}
               />
             </div>
-            <Button type="submit">Save changes</Button>
-            
+            <DialogClose>
+              <Button type="submit">Save changes</Button>
+            </DialogClose>
           </form>
         </Form>
       </DialogContent>
